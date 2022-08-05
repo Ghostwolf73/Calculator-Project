@@ -1,43 +1,51 @@
-let num1, num2;
+const selectSound = new Audio('./Sounds/select.mp3');
+const equalSound = new Audio('./Sounds/start.mp3');
 
-function add (num1, num2){
-    let sum = parseInt(num1) + parseInt(num2);
-    return sum;
-}
+function display(val){
 
-function subtract (num1, num2){
-    let difference = num1 - num2;
-    return difference;
-}
+    document.getElementById('result').value += val
 
-function multiply (num1, num2){
-    let multiple = num1 * num2;
-    return multiple;
-}
-
-function division (num1, num2){
-    let divided = num1 / num2;
-    return divided;
-}
-
-function operate (){
-    num1 = prompt("enter your first number");
-    let operator = prompt("enter your operator");
-    num2 = prompt("enter your second nuumber");
-
-    if(operator === "+"){
-       alert(add(num1, num2));
-    }
-    else if (operator === "-"){
-       alert(subtract(num1, num2)); 
-    }
-    else if (operator === "*"){
-       alert(multiply(num1, num2));
-    }
-    else if (operator === "/"){
-       alert(division(num1, num2));
-    }
+    return val
 
 }
 
-// operate();
+function deleteVal(val){
+    var val = document.getElementById('result').value;
+    document.getElementById("result").value = val.substr(0, val.length - 1);
+    return val
+}
+
+function clearScreen(){
+
+    document.getElementById('result').value = ''
+
+}
+
+function solve(){
+
+    let x = document.getElementById('result').value
+
+    let y = eval(x);
+
+    document.getElementById('result').value = y
+
+    return y
+
+}
+
+function percentage(){
+    let perc = (val / 100) * val;
+
+    return perc;
+}
+
+let equal = document.querySelector('.equal-sign');
+equal.addEventListener('click', ()=>{
+    equalSound.play();
+})
+
+let buttons = document.querySelector('.buttons');
+
+buttons.addEventListener('click', ()=>{
+    selectSound.play();
+})
